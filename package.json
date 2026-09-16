@@ -1,0 +1,11 @@
+{
+  "name": "@code402/verify-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that verifies code402 XDR-1 receipts: keccak canonical digest, secp256k1 signer recovery, offline-verifiable proof for every result.",
+  "type": "module",
+  "bin": { "code402-verify-mcp": "./index.mjs" },
+  "files": ["index.mjs", "README.md"],
+  "keywords": ["mcp", "x402", "xdr1", "verification", "receipt", "base", "usdc"],
+  "license": "MIT",
+  "engines": { "node": ">=18" }
+}
