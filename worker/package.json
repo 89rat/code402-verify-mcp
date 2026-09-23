@@ -1,0 +1,23 @@
+{
+  "name": "code402-verify-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "code402 standalone XDR-1 receipt verifier — the fast, dedicated verify.code402.dev surface (extracted from the monolith to kill its cold start).",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@noble/curves": "^1.4.0",
+    "@noble/hashes": "^1.4.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260921.1",
+    "typescript": "^5.6.0",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.131.1"
+  }
+}

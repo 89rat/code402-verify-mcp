@@ -55,6 +55,15 @@ desktop MCP runners). Point it elsewhere with `CODE402_VERIFY_URL`.
 Verification is pure recomputation over public data — the same operation any
 agent can run offline against its own receipts.
 
+## The hosted verifier's exact source (public)
+
+`worker/` in this repo is the complete source of the hosted verifier at
+`verify.code402.dev` (a dedicated Cloudflare worker, extracted from the rail
+monolith 2026-09-23: 3ms startup vs the monolith's measured 11.3s cold start).
+Same canon + keccak-256 + secp256k1 recovery, byte-identical verdicts — pinned
+by `worker/test/index.spec.ts` against a real minted receipt. The public can
+audit exactly what verifies their receipts.
+
 ## License
 
 MIT
