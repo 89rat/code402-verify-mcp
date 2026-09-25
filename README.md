@@ -47,10 +47,15 @@ Result:
 
 ## How it works
 
-This package is a thin stdio/HTTP bridge: it forwards JSON-RPC to the hosted
-verifier at `verify.code402.dev` and quarantines every diagnostic to stderr, so
-stdout carries only clean JSON-RPC 2.0 frames (a hard requirement for Docker and
-desktop MCP runners). Point it elsewhere with `CODE402_VERIFY_URL`.
+**Local-first (since 0.2.0):** verification runs entirely on your machine —
+keccak-256 over the canonical receipt, secp256k1 public-key recovery, compared
+to the declared signer. No network calls, no keys held, nothing to trust but
+the math. Set `CODE402_VERIFY_URL` to proxy to the hosted verifier at
+`verify.code402.dev` instead — verdicts are identical by construction
+(deterministic recomputation over public data).
+
+Stdout carries only clean single-line JSON-RPC 2.0 frames; every diagnostic
+goes to stderr (a hard requirement for Docker and desktop MCP runners).
 
 Verification is pure recomputation over public data — the same operation any
 agent can run offline against its own receipts.
