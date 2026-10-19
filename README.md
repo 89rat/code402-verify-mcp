@@ -1,8 +1,8 @@
 # @code402/verify-mcp
 
-Verify [code402](https://code402.dev) **XDR-1 receipts** from any MCP client.
-Every result a code402 endpoint returns carries a signed receipt; this server
-checks the signature deterministically — keccak-256 over the canonical receipt,
+Verify [code402 / HCRB](https://hcrb.in) **XDR-1 receipts** from any MCP client.
+Every result a code402 endpoint returns (across the 24 public checks at `https://hcrb.in/mcp` and the 7 revenue modules at `https://hcrb.in/mcp?catalog=modules`) carries a signed receipt; this server
+checks the signature deterministically — keccak-256 over the canonical receipt (`v|tool|tool_version|input_hash|output_hash|payer|recipient|amount|nonce|ts|tier[|successor|stream_state]`),
 secp256k1 public-key recovery, compared to the declared signer. Free, stateless,
 no account: the verifier holds no keys and performs no settlement.
 
@@ -36,11 +36,8 @@ Result:
   "amount": "5000",
   "receipt_hash": "0x…",
   "_meta": {
-    "verified_by": "code402",
-    "network": "base-mainnet",
-    "signer": "0xa036…",
-    "signer_recovered": "0xa036…",
-    "attestation_url": "https://hcrb.in/audit/0x…"
+    "verified_by": "code402-verify-mcp (local, offline)",
+    "version": "0.2.0"
   }
 }
 ```
@@ -51,7 +48,7 @@ Result:
 keccak-256 over the canonical receipt, secp256k1 public-key recovery, compared
 to the declared signer. No network calls, no keys held, nothing to trust but
 the math. Set `CODE402_VERIFY_URL` to proxy to the hosted verifier at
-`verify.code402.dev` instead — verdicts are identical by construction
+`https://hcrb.in/v1/receipt/verify` or `https://verify.code402.dev/` instead — verdicts are identical by construction
 (deterministic recomputation over public data).
 
 Stdout carries only clean single-line JSON-RPC 2.0 frames; every diagnostic
@@ -67,7 +64,7 @@ agent can run offline against its own receipts.
 monolith 2026-09-23: 3ms startup vs the monolith's measured 11.3s cold start).
 Same canon + keccak-256 + secp256k1 recovery, byte-identical verdicts — pinned
 by `worker/test/index.spec.ts` against a real minted receipt. The public can
-audit exactly what verifies their receipts.
+verify the exact code that checks their receipts.
 
 ## License
 
