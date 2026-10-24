@@ -1,5 +1,5 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.89rat/code402-verify-mcp",
   "description": "Verify code402 XDR-1 receipts: keccak digest + secp256k1 signer recovery. Free, stateless.",
   "version": "0.2.0",
